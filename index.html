@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amanda Moreno | Nutrição e Bem-estar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --rosa-logo: #D48C8C;
+            --dourado-logo: #C5A059;
+            --bege-claro: #FDF8F5;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bege-claro);
+            color: #4A4A4A;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Ajuste para o scroll não ficar por baixo do menu fixo */
+        section {
+            scroll-margin-top: 80px;
+        }
+
+        .text-rosa { color: var(--rosa-logo); }
+        .bg-rosa { background-color: var(--rosa-logo); }
+        .text-dourado { color: var(--dourado-logo); }
+        .border-dourado { border-color: var(--dourado-logo); }
+
+        .sunflower-bg {
+            position: absolute;
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(135deg, var(--rosa-logo), var(--dourado-logo));
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(212, 140, 140, 0.3);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .float-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .float-whatsapp:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sunflower Decorations -->
+    <svg class="sunflower-bg top-10 -left-20 w-80 h-80" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path fill="none" stroke="currentColor" stroke-width="0.5" d="M50 50 Q60 20 50 10 Q40 20 50 50 M50 50 Q80 40 90 50 Q80 60 50 50 M50 50 Q60 80 50 90 Q40 80 50 50 M50 50 Q20 60 10 50 Q20 40 50 50 M50 50 Q75 25 85 35 Q75 45 50 50 M50 50 Q75 75 65 85 Q55 75 50 50 M50 50 Q25 75 15 65 Q25 55 50 50 M50 50 Q25 25 35 15 Q45 25 50 50" />
+        <circle cx="50" cy="50" r="8" fill="none" stroke="currentColor" stroke-width="0.5" />
+    </svg>
+
+    <svg class="sunflower-bg bottom-20 -right-20 w-96 h-96" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path fill="none" stroke="currentColor" stroke-width="0.3" d="M50 50 Q60 20 50 10 Q40 20 50 50 M50 50 Q80 40 90 50 Q80 60 50 50 M50 50 Q60 80 50 90 Q40 80 50 50 M50 50 Q20 60 10 50 Q20 40 50 50 M50 50 Q75 25 85 35 Q75 45 50 50 M50 50 Q75 75 65 85 Q55 75 50 50 M50 50 Q25 75 15 65 Q25 55 50 50 M50 50 Q25 25 35 15 Q45 25 50 50" />
+        <circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="0.3" />
+    </svg>
+
+    <!-- Header Fixo (Sticky) -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300">
+        <div class="px-6 py-4 flex justify-between items-center max-w-7xl mx-auto">
+            <div class="flex flex-col">
+                <span class="text-xl md:text-2xl font-bold tracking-widest text-rosa uppercase" style="font-family: 'Playfair Display', serif;">Amanda Moreno</span>
+                <span class="text-[10px] md:text-xs tracking-[0.3em] text-dourado uppercase ml-1">Nutrição</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-sm font-medium uppercase tracking-wider">
+                <a href="#inicio" class="hover:text-rosa transition">Início</a>
+                <a href="#sobre" class="hover:text-rosa transition">Sobre</a>
+                <a href="#servicos" class="hover:text-rosa transition">Atendimento</a>
+                <a href="#contato" class="hover:text-rosa transition">Contato</a>
+            </nav>
+            <a href="#contato" class="hidden md:block border border-dourado text-dourado px-6 py-2 rounded-full text-xs font-semibold hover:bg-dourado hover:text-white transition">AGENDAR CONSULTA</a>
+            
+            <!-- Mobile Menu Icon (Apenas Visual por enquanto) -->
+            <div class="md:hidden text-rosa">
+                <i data-lucide="menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative z-10 px-6 py-12 md:py-24 max-w-7xl mx-auto flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 space-y-6">
+            <h2 class="text-dourado text-sm font-bold tracking-widest uppercase">Saúde e Equilíbrio</h2>
+            <h1 class="text-4xl md:text-6xl leading-tight">Sua nutrição de forma <span class="italic text-rosa">leve e consciente.</span></h1>
+            <p class="text-gray-500 max-w-md leading-relaxed">
+                Acreditamos que comer bem é um ato de cuidado. Transforme sua relação com a comida através de um acompanhamento personalizado e humanizado.
+            </p>
+            <div class="pt-4">
+                <a href="#contato" class="btn-gradient text-white px-8 py-4 rounded-full font-bold text-sm tracking-wide inline-block shadow-lg">COMECE SUA TRANSFORMAÇÃO</a>
+            </div>
+        </div>
+        <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center relative">
+            <div class="w-72 h-96 md:w-96 md:h-[500px] bg-gray-200 rounded-t-full border-[12px] border-white shadow-2xl overflow-hidden relative">
+                <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-[#E8D9CF]">
+                    <i data-lucide="user" class="w-24 h-24 opacity-20"></i>
+                </div>
+                <img src="AM.JPG" alt="Nutricionista Amanda Moreno" class="w-full h-full object-cover mix-blend-multiply opacity-80">
+            </div>
+            <div class="absolute -bottom-6 -right-6 md:right-10 bg-white p-6 rounded-2xl shadow-xl glass-card flex items-center space-x-4">
+                <div class="bg-rosa p-3 rounded-full text-white">
+                    <i data-lucide="heart" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <p class="text-xs font-bold text-dourado uppercase">Foco no Paciente</p>
+                    <p class="text-sm font-medium">Saúde Integrativa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="bg-white py-20 px-6 relative">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
+            <div class="md:w-1/2 space-y-6">
+                <h2 class="text-3xl md:text-4xl">O Girassol e a <span class="text-rosa">Nutrição</span></h2>
+                <div class="w-20 h-1 bg-dourado"></div>
+                <p class="text-gray-600 leading-relaxed">
+                    Assim como o girassol busca a luz para crescer, meu objetivo é guiar você em direção à sua melhor versão. Formada em nutrição, minha abordagem foca na individualidade biológica, respeitando seus gostos, rotina e história.
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    Não trabalhamos apenas com calorias, mas com nutrientes que nutrem a alma e o corpo, proporcionando longevidade e disposição para o seu dia a dia.
+                </p>
+                <div class="grid grid-cols-2 gap-6 pt-6">
+                    <div class="border-l-4 border-rosa pl-4">
+                        <h4 class="font-bold text-xl">500+</h4>
+                        <p class="text-xs text-gray-400 uppercase">Vidas Transformadas</p>
+                    </div>
+                    <div class="border-l-4 border-dourado pl-4">
+                        <h4 class="font-bold text-xl">100%</h4>
+                        <p class="text-xs text-gray-400 uppercase">Plano Personalizado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4 pt-8">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=400" class="rounded-2xl shadow-lg w-full h-64 object-cover" alt="Saúde">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400" class="rounded-2xl shadow-lg w-full h-48 object-cover" alt="Alimentação">
+                    </div>
+                    <div class="space-y-4">
+                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=400" class="rounded-2xl shadow-lg w-full h-48 object-cover" alt="Nutrientes">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=400" class="rounded-2xl shadow-lg w-full h-64 object-cover" alt="Sobremesa saudável">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl mb-4">Como posso te ajudar?</h2>
+            <p class="text-gray-500">Serviços pensados para cada etapa do seu desenvolvimento</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition border-t-4 border-rosa group">
+                <div class="bg-rosa/10 w-16 h-16 rounded-2xl flex items-center justify-center text-rosa mb-6 group-hover:bg-rosa group-hover:text-white transition">
+                    <i data-lucide="utensils" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Emagrecimento Consciente</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    Planos alimentares sem restrições severas, focando na reeducação alimentar para resultados duradouros.
+                </p>
+            </div>
+            <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition border-t-4 border-dourado group">
+                <div class="bg-dourado/10 w-16 h-16 rounded-2xl flex items-center justify-center text-dourado mb-6 group-hover:bg-dourado group-hover:text-white transition">
+                    <i data-lucide="dumbbell" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Nutrição Esportiva</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    Otimização de performance e recuperação muscular para atletas e praticantes de atividade física.
+                </p>
+            </div>
+            <div class="bg-white p-10 rounded-3xl shadow-sm hover:shadow-xl transition border-t-4 border-rosa group">
+                <div class="bg-rosa/10 w-16 h-16 rounded-2xl flex items-center justify-center text-rosa mb-6 group-hover:bg-rosa group-hover:text-white transition">
+                    <i data-lucide="smile" class="w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-4">Saúde da Mulher</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                    Acompanhamento específico para equilíbrio hormonal, gestação, SOP e menopausa.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section id="contato" class="py-20 px-6 bg-[#F8F2ED]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16">
+            <div class="md:w-1/2 space-y-8">
+                <h2 class="text-4xl">Vamos agendar uma <span class="text-dourado italic">conversa?</span></h2>
+                <p class="text-gray-600">Preencha o formulário abaixo e minha equipe entrará em contato para agendar o melhor horário para você.</p>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-rosa pt-1"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+                        <div>
+                            <p class="font-bold">Endereço</p>
+                            <p class="text-sm text-gray-500">R. Formosa, 55 - Rudge Ramos,<br>São Bernardo do Campo - SP, 09626-060</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-rosa pt-1"><i data-lucide="phone" class="w-6 h-6"></i></div>
+                        <div>
+                            <p class="font-bold">Telefone</p>
+                            <p class="text-sm text-gray-500">(11) 99999-9999</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full h-48 bg-gray-300 rounded-2xl overflow-hidden shadow-inner grayscale contrast-75">
+                    <div class="w-full h-full flex items-center justify-center bg-[#E5E5E5] text-gray-400 flex-col">
+                        <i data-lucide="map" class="w-10 h-10 mb-2"></i>
+                        <span class="text-xs uppercase tracking-widest">Mapa de Localização</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:w-1/2">
+                <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-2xl">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Nome Completo</label>
+                            <input type="text" class="w-full bg-gray-50 border-b-2 border-gray-100 focus:border-rosa outline-none py-3 px-1 transition" placeholder="Como podemos te chamar?">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">WhatsApp</label>
+                            <input type="tel" class="w-full bg-gray-50 border-b-2 border-gray-100 focus:border-rosa outline-none py-3 px-1 transition" placeholder="(11) 00000-0000">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Objetivo</label>
+                            <select class="w-full bg-gray-50 border-b-2 border-gray-100 focus:border-rosa outline-none py-3 px-1 transition text-gray-500">
+                                <option>Selecione um objetivo</option>
+                                <option>Emagrecimento</option>
+                                <option>Hipertrofia</option>
+                                <option>Saúde e Bem-estar</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full btn-gradient text-white py-4 rounded-xl font-bold shadow-lg mt-4 uppercase tracking-widest text-sm">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 px-6 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0 text-center md:text-left">
+            <div>
+                <span class="text-xl font-bold tracking-widest text-rosa uppercase" style="font-family: 'Playfair Display', serif;">Amanda Moreno</span>
+                <p class="text-xs text-gray-400 mt-2">© 2024 Todos os direitos reservados.</p>
+            </div>
+            <div class="flex space-x-6 text-gray-400">
+                <a href="#" class="hover:text-rosa transition"><i data-lucide="instagram"></i></a>
+                <a href="#" class="hover:text-rosa transition"><i data-lucide="facebook"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/5511999999999" target="_blank" class="float-whatsapp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+    </a>
+
+    <script>
+        lucide.createIcons();
+
+        // Smooth Scrolling con offset para el menú fijo
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
