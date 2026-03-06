@@ -256,7 +256,7 @@
             e.preventDefault();
             const name = document.getElementById('name').value;
             const goal = document.getElementById('goal').value;
-            const text = encodeURIComponent(`🌻 *NOVO CONTATO VIA SITE* 🌻\n\nOlá Amanda! Meu nome é *${name}*.\nTenho interesse em: *${goal}*.\nComo funcionam os valores?`);
+            const text = encodeURIComponent(` *NOVO ATENDIMENTO* \n\nOlá Amanda! Meu nome é *${name}*.\nTenho interesse em: *${goal}*.\nComo funcionam os valores?`);
             window.open(`https://wa.me/${NUTRI_WHATSAPP}?text=${text}`, '_blank');
         });
     </script>
