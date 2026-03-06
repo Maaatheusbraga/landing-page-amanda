@@ -25,7 +25,6 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* Ajuste para o scroll não ficar por baixo do menu fixo */
         section {
             scroll-margin-top: 80px;
         }
@@ -34,6 +33,29 @@
         .bg-rosa { background-color: var(--rosa-logo); }
         .text-dourado { color: var(--dourado-logo); }
         .border-dourado { border-color: var(--dourado-logo); }
+
+        /* Animação de Flutuação */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Efeito de Revelação no Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .sunflower-bg {
             position: absolute;
@@ -49,13 +71,40 @@
 
         .btn-gradient:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(212, 140, 140, 0.3);
+            box-shadow: 0 10px 20px -5px rgba(212, 140, 140, 0.4);
         }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+        }
+
+        /* Card de Serviço - Estilizado */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-bottom: 0px solid var(--rosa-logo);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-bottom-width: 6px;
+        }
+
+        /* Imagem Zoom Effect */
+        .img-container {
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+
+        .img-container img {
+            transition: transform 0.7s ease;
+        }
+
+        .img-container:hover img {
+            transform: scale(1.1);
         }
 
         .float-whatsapp {
@@ -66,19 +115,13 @@
             color: white;
             padding: 15px;
             border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
             z-index: 100;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .float-whatsapp:hover {
-            transform: scale(1.1);
-        }
-
-        /* Estilo para ajudar a debugar se a imagem não carregar */
-        img.img-error {
-            border: 2px dashed var(--rosa-logo);
-            background: #eee;
+            transform: scale(1.1) rotate(5deg);
         }
     </style>
 </head>
@@ -90,8 +133,8 @@
         <circle cx="50" cy="50" r="8" fill="none" stroke="currentColor" stroke-width="0.5" />
     </svg>
 
-    <!-- Header Fixo -->
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300">
+    <!-- Header -->
+    <header id="mainHeader" class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-500">
         <div class="px-6 py-4 flex justify-between items-center max-w-7xl mx-auto">
             <div class="flex flex-col">
                 <span class="text-xl md:text-2xl font-bold tracking-widest text-rosa uppercase" style="font-family: 'Playfair Display', serif;">Amanda Moreno</span>
@@ -104,8 +147,7 @@
                 <a href="#contato" class="hover:text-rosa transition">Contato</a>
             </nav>
             <a href="#contato" class="hidden md:block border border-dourado text-dourado px-6 py-2 rounded-full text-xs font-semibold hover:bg-dourado hover:text-white transition uppercase tracking-widest">Agendar Consulta</a>
-            
-            <div class="md:hidden text-rosa">
+            <div class="md:hidden text-rosa cursor-pointer">
                 <i data-lucide="menu"></i>
             </div>
         </div>
@@ -113,7 +155,7 @@
 
     <!-- Hero Section -->
     <section id="inicio" class="relative z-10 px-6 py-12 md:py-24 max-w-7xl mx-auto flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 space-y-6">
+        <div class="md:w-1/2 space-y-6 reveal">
             <h2 class="text-dourado text-sm font-bold tracking-widest uppercase italic">Saúde e Equilíbrio</h2>
             <h1 class="text-4xl md:text-6xl leading-tight">Sua nutrição de forma <span class="italic text-rosa">leve e consciente.</span></h1>
             <p class="text-gray-500 max-w-md leading-relaxed">
@@ -123,14 +165,13 @@
                 <a href="#contato" class="btn-gradient text-white px-8 py-4 rounded-full font-bold text-sm tracking-wide inline-block shadow-lg uppercase tracking-widest">Comece sua jornada</a>
             </div>
         </div>
-        <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center relative">
-            <div class="w-72 h-96 md:w-96 md:h-[500px] bg-gray-200 rounded-t-full border-[12px] border-white shadow-2xl overflow-hidden relative">
+        <div class="md:w-1/2 mt-12 md:mt-0 flex justify-center relative reveal" style="transition-delay: 200ms;">
+            <div class="float-animation w-72 h-96 md:w-96 md:h-[500px] bg-gray-200 rounded-t-full border-[12px] border-white shadow-2xl overflow-hidden relative">
                 <div class="absolute inset-0 flex items-center justify-center text-gray-400 bg-[#E8D9CF]">
                     <i data-lucide="user" class="w-24 h-24 opacity-20"></i>
                 </div>
                 <!-- IMAGEM PRINCIPAL -->
-                <!-- DICA: Certifique-se que o arquivo é AM.JPG (letras maiúsculas) e está na mesma pasta que este index.html -->
-                <img src="AM.JPG" alt="Nutricionista Amanda Moreno" class="w-full h-full object-cover mix-blend-multiply opacity-80">
+                <img src="AM.JPG" alt="Nutricionista Amanda Moreno" class="w-full h-full object-cover mix-blend-multiply opacity-80" onerror="this.src='https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800'">
             </div>
             <div class="absolute -bottom-6 -right-6 md:right-10 bg-white p-6 rounded-2xl shadow-xl glass-card flex items-center space-x-4">
                 <div class="bg-rosa p-3 rounded-full text-white">
@@ -147,7 +188,7 @@
     <!-- Seção Sobre -->
     <section id="sobre" class="bg-white py-20 px-6 relative">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row-reverse items-center gap-12">
-            <div class="md:w-1/2 space-y-6">
+            <div class="md:w-1/2 space-y-6 reveal">
                 <h2 class="text-3xl md:text-4xl">O Girassol e a <span class="text-rosa">Nutrição</span></h2>
                 <div class="w-20 h-1 bg-dourado"></div>
                 <p class="text-gray-600 leading-relaxed">
@@ -160,42 +201,56 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/2">
+            <div class="md:w-1/2 reveal" style="transition-delay: 300ms;">
                 <div class="grid grid-cols-2 gap-4">
                     <div class="space-y-4 pt-8">
-                        <img src="./atendimento2025.JPG" class="rounded-2xl shadow-lg w-full h-64 object-cover" alt="Atendimento" onerror="this.src='https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=400'">
-                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400" class="rounded-2xl shadow-lg w-full h-48 object-cover" alt="Alimentação">
+                        <div class="img-container">
+                            <img src="./atendimento2025.JPG" class="w-full h-64 object-cover" alt="Atendimento" onerror="this.src='https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=400'">
+                        </div>
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover" alt="Alimentação">
+                        </div>
                     </div>
                     <div class="space-y-4">
-                        <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=400" class="rounded-2xl shadow-lg w-full h-48 object-cover" alt="Nutrientes">
-                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=400" class="rounded-2xl shadow-lg w-full h-64 object-cover" alt="Sobremesa saudável">
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&q=80&w=400" class="w-full h-48 object-cover" alt="Nutrientes">
+                        </div>
+                        <div class="img-container">
+                            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=400" class="w-full h-64 object-cover" alt="Sobremesa saudável">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Outras seções... -->
+    <!-- Serviços -->
     <section id="servicos" class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
+        <div class="text-center mb-16 reveal">
             <h2 class="text-4xl mb-4">Como posso te ajudar?</h2>
             <p class="text-gray-500">Acompanhamento nutricional completo</p>
         </div>
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-10 rounded-3xl shadow-sm border-t-4 border-rosa group">
-                <i data-lucide="utensils" class="text-rosa mb-4"></i>
+            <div class="service-card bg-white p-10 rounded-3xl shadow-sm border-t-4 border-rosa reveal" style="transition-delay: 100ms;">
+                <div class="bg-rosa/10 w-14 h-14 flex items-center justify-center rounded-2xl mb-6">
+                    <i data-lucide="utensils" class="text-rosa"></i>
+                </div>
                 <h3 class="text-xl font-bold mb-4">Emagrecimento</h3>
-                <p class="text-gray-500 text-sm leading-relaxed">Planos alimentares sem restrições severas.</p>
+                <p class="text-gray-500 text-sm leading-relaxed">Planos alimentares sem restrições severas, focados na reeducação para resultados duradouros.</p>
             </div>
-            <div class="bg-white p-10 rounded-3xl shadow-sm border-t-4 border-dourado group">
-                <i data-lucide="dumbbell" class="text-dourado mb-4"></i>
+            <div class="service-card bg-white p-10 rounded-3xl shadow-sm border-t-4 border-dourado reveal" style="transition-delay: 200ms;">
+                <div class="bg-dourado/10 w-14 h-14 flex items-center justify-center rounded-2xl mb-6">
+                    <i data-lucide="dumbbell" class="text-dourado"></i>
+                </div>
                 <h3 class="text-xl font-bold mb-4">Performance</h3>
-                <p class="text-gray-500 text-sm leading-relaxed">Otimização de resultados esportivos.</p>
+                <p class="text-gray-500 text-sm leading-relaxed">Otimização de resultados esportivos e composição corporal com estratégias nutricionais avançadas.</p>
             </div>
-            <div class="bg-white p-10 rounded-3xl shadow-sm border-t-4 border-rosa group">
-                <i data-lucide="smile" class="text-rosa mb-4"></i>
+            <div class="service-card bg-white p-10 rounded-3xl shadow-sm border-t-4 border-rosa reveal" style="transition-delay: 300ms;">
+                <div class="bg-rosa/10 w-14 h-14 flex items-center justify-center rounded-2xl mb-6">
+                    <i data-lucide="smile" class="text-rosa"></i>
+                </div>
                 <h3 class="text-xl font-bold mb-4">Saúde Feminina</h3>
-                <p class="text-gray-500 text-sm leading-relaxed">Equilíbrio hormonal e gestação.</p>
+                <p class="text-gray-500 text-sm leading-relaxed">Equilíbrio hormonal, SOP, menopausa e acompanhamento gestacional para todas as fases.</p>
             </div>
         </div>
     </section>
@@ -203,25 +258,33 @@
     <!-- Contato -->
     <section id="contato" class="py-20 px-6 bg-[#F8F2ED]">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16">
-            <div class="md:w-1/2 space-y-8">
+            <div class="md:w-1/2 space-y-8 reveal">
                 <h2 class="text-4xl">Vamos agendar uma <span class="text-dourado italic">conversa?</span></h2>
                 <div class="space-y-4">
                     <p class="flex items-center space-x-3 text-gray-600"><i data-lucide="map-pin" class="text-rosa"></i> <span>R. Formosa, 55 - Rudge Ramos, SBC</span></p>
                     <p class="flex items-center space-x-3 text-gray-600"><i data-lucide="phone" class="text-rosa"></i> <span>(11) 97573-8299</span></p>
+                    <p class="flex items-center space-x-3 text-gray-600"><i data-lucide="instagram" class="text-rosa"></i> <span>@nutriamandamoreno</span></p>
                 </div>
             </div>
 
-            <div class="md:w-1/2">
+            <div class="md:w-1/2 reveal" style="transition-delay: 200ms;">
                 <div class="bg-white p-8 rounded-[2rem] shadow-2xl border border-gray-100">
                     <form id="contactForm" class="space-y-6">
-                        <input type="text" id="name" required class="w-full bg-gray-50 border-b-2 border-gray-100 focus:border-rosa outline-none py-3" placeholder="Seu Nome">
-                        <select id="goal" required class="w-full bg-gray-50 border-b-2 border-gray-100 focus:border-rosa outline-none py-3">
-                            <option value="">Objetivo...</option>
-                            <option value="Emagrecimento">Emagrecimento</option>
-                            <option value="Performance">Performance</option>
-                            <option value="Saúde">Saúde Geral</option>
-                        </select>
-                        <button type="submit" class="w-full btn-gradient text-white py-4 rounded-xl font-bold uppercase text-xs">Solicitar Agendamento</button>
+                        <div>
+                            <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold ml-1">Nome Completo</label>
+                            <input type="text" id="name" required class="w-full bg-gray-50 border-b-2 border-gray-100 focus:border-rosa outline-none py-3 transition-colors" placeholder="Ex: Maria Silva">
+                        </div>
+                        <div>
+                            <label class="text-[10px] uppercase tracking-widest text-gray-400 font-bold ml-1">Qual seu principal objetivo?</label>
+                            <select id="goal" required class="w-full bg-gray-50 border-b-2 border-gray-100 focus:border-rosa outline-none py-3 transition-colors">
+                                <option value="">Selecione...</option>
+                                <option value="Emagrecimento">Emagrecimento</option>
+                                <option value="Performance">Performance Esportiva</option>
+                                <option value="Saúde Feminina">Saúde da Mulher</option>
+                                <option value="Saúde">Saúde Geral / Longevidade</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full btn-gradient text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest mt-4">Solicitar Agendamento via WhatsApp</button>
                     </form>
                 </div>
             </div>
@@ -230,35 +293,69 @@
 
     <!-- Footer -->
     <footer class="bg-white py-12 px-6 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-            <span class="text-xl md:text-2xl font-bold tracking-widest text-rosa uppercase" style="font-family: 'Playfair Display', serif;">Amanda Moreno<br><span class="text-[10px] md:text-xs tracking-[0.3em] text-dourado uppercase ml-1">Nutrição</span></span>
-            <div class="flex space-x-6 text-gray-400 mt-4 md:mt-0">
-                <a href="https://www.instagram.com/nutriamandamoreno/" target="_blank"><i data-lucide="instagram"></i></a>
-                <span class="text-gray-400">nutriamandamoreno</span>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="flex flex-col mb-6 md:mb-0">
+                <span class="text-xl font-bold tracking-widest text-rosa uppercase" style="font-family: 'Playfair Display', serif;">Amanda Moreno</span>
+                <span class="text-[10px] tracking-[0.3em] text-dourado uppercase">Nutrição Humanizada</span>
+            </div>
+            <div class="text-gray-400 text-sm">
+                <p>&copy; 2024 Amanda Moreno. Todos os direitos reservados.</p>
+                <div class="flex justify-center md:justify-end space-x-4 mt-2">
+                    <a href="#" class="hover:text-rosa transition">Privacidade</a>
+                    <a href="#" class="hover:text-rosa transition">Termos</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Botão Flutuante -->
     <a id="whatsappFloat" href="#" target="_blank" class="float-whatsapp flex items-center justify-center">
-        <i data-lucide="message-circle"></i>
+        <i data-lucide="message-circle" class="w-7 h-7"></i>
     </a>
 
     <script>
+        // Inicializa ícones
         lucide.createIcons();
 
+        // Configuração do WhatsApp
         const NUTRI_WHATSAPP = "5511975738299";
-
-        // Botão flutuante
         document.getElementById('whatsappFloat').href = `https://wa.me/${NUTRI_WHATSAPP}?text=Olá Amanda! Vi seu site e gostaria de saber mais sobre as consultas.`;
 
-        // Formulário
+        // Scroll Reveal Animation com Intersection Observer
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Header Scroll Effect
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-4');
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('py-2');
+                header.classList.add('py-4');
+                header.classList.remove('shadow-md');
+            }
+        });
+
+        // Formulário de Contato
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const goal = document.getElementById('goal').value;
-            const text = encodeURIComponent(` *NOVO ATENDIMENTO* \n\nOlá Amanda! Meu nome é *${name}*.\nTenho interesse em: *${goal}*.\nComo funcionam os valores?`);
-            window.open(`https://wa.me/${NUTRI_WHATSAPP}?text=${text}`, '_blank');
+            const message = `*SOLICITAÇÃO DE AGENDAMENTO*\n\n*Nome:* ${name}\n*Objetivo:* ${goal}\n\nOlá Amanda! Gostaria de saber mais informações sobre os seus planos de acompanhamento.`;
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${NUTRI_WHATSAPP}?text=${encodedMessage}`, '_blank');
         });
     </script>
 </body>
